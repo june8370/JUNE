@@ -30,7 +30,7 @@ window.addEventListener("hashchange", handleHash);
 handleHash();
 
 // ---------------- Global Defence News Feed ----------------
-const NEWS_API_KEY = "9706b53ba74c4755bbdc9e5d1da8828c"; // ⚠️ Replace with your NewsAPI key
+const NEWS_API_KEY = "2ea79460042b4496ab57b6a09b52b790"; // ⚠️ Replace with your NewsAPI key
 const NEWS_QUERY = "defence OR defense OR military OR armed forces OR army OR navy OR air force OR war OR weapon OR conflict OR missile OR soldier OR global security";
 const NEWS_LANGUAGE = "en";
 const NEWS_PAGE_SIZE = 12; // number of articles to display
