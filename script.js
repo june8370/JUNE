@@ -3,68 +3,88 @@
 // Global Intelligence Feed
 // ==================================================
 
-// ----- NAVIGATION -----
-const views = {
-  home: document.getElementById("home"),
-  news: document.getElementById("news")
-};
-const links = {
-  home: document.getElementById("link-home"),
-  news: document.getElementById("link-news")
-};
+const homeBtn = document.getElementById("homeBtn");
+const newsBtn = document.getElementById("newsBtn");
+const homeSection = document.getElementById("homeSection");
+const newsSection = document.getElementById("newsSection");
+const newsFeed = document.getElementById("newsFeed");
 
-function showView(view) {
-  for (const key in views) {
-    views[key].style.display = key === view ? "" : "none";
-    links[key].setAttribute("aria-current", key === view ? "true" : "false");
-  }
+homeBtn.addEventListener("click", () => {
+  homeBtn.classList.add("active");
+  newsBtn.classList.remove("active");
+  homeSection.classList.add("active");
+  newsSection.classList.remove("active");
+});
+
+newsBtn.addEventListener("click", () => {
+  newsBtn.classList.add("active");
+  homeBtn.classList.remove("active");
+  newsSection.classList.add("active");
+  homeSection.classList.remove("active");
+});
+
+// RSS Feeds for defence & research news
+const feeds = [
+  "https://feeds.bbci.co.uk/news/world/rss.xml",
+  "https://www.defence-blog.com/feed/",
+  "https://www.military.com/rss-feeds/content",
+  "https://www.globalsecurity.org/military/rss/news.xml",
+  "https://www.reuters.com/rssFeed/defense.xml"
+];
+
+async function fetchRSSFeed(url) {
+  const proxy = "https://api.allorigins.win/get?url=";
+  const res = await fetch(proxy + encodeURIComponent(url));
+  const data = await res.json();
+  const parser = new DOMParser();
+  const xml = parser.parseFromString(data.contents, "text/xml");
+  return Array.from(xml.querySelectorAll("item")).map(item => ({
+    title: item.querySelector("title")?.textContent || "No title",
+    link: item.querySelector("link")?.textContent || "#",
+    description: item.querySelector("description")?.textContent || "",
+    pubDate: item.querySelector("pubDate")?.textContent || "",
+  }));
 }
-window.addEventListener("hashchange", () => showView(location.hash.replace("#", "") || "home"));
-showView(location.hash.replace("#", "") || "home");
 
-// ----- GLOBAL DEFENCE NEWS -----
-const API_KEY = "9706b53ba74c4755bbdc9e5d1da8828c"; // ← Replace with your actual NewsAPI key
-const NEWS_LIST = document.getElementById("news-list");
+async function loadDefenceNews() {
+  newsFeed.innerHTML = `<p class="loading">Gathering global defence reports...</p>`;
+  let allArticles = [];
 
-async function fetchDefenceNews() {
-  NEWS_LIST.innerHTML = `<p class="loading">Gathering global intelligence reports...</p>`;
-  const NEWS_QUERY = "defence OR defense OR military OR research OR global OR security OR technology";
-
-  try {
-    const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(
-      NEWS_QUERY
-    )}&language=en&pageSize=12&sortBy=publishedAt&apiKey=${API_KEY}`;
-    const res = await fetch(url);
-    const data = await res.json();
-
-    if (data.status === "ok" && data.articles.length > 0) {
-      renderNews(data.articles);
-    } else {
-      NEWS_LIST.innerHTML = `<p class="error">No global defence reports available right now.</p>`;
+  for (const feed of feeds) {
+    try {
+      const articles = await fetchRSSFeed(feed);
+      allArticles = allArticles.concat(articles);
+    } catch (err) {
+      console.warn("Feed error:", feed, err);
     }
-  } catch (error) {
-    console.error("Error fetching news:", error);
-    NEWS_LIST.innerHTML = `<p class="error">Unable to retrieve intelligence reports. Please check your API key or connection.</p>`;
   }
+
+  // Sort by newest
+  allArticles.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+
+  // Render first 12
+  renderNews(allArticles.slice(0, 12));
 }
 
 function renderNews(articles) {
-  NEWS_LIST.innerHTML = "";
-  for (const a of articles) {
-    const card = document.createElement("article");
-    card.className = "news-item";
-    card.innerHTML = `
-      <h3><a href="${a.url}" target="_blank" rel="noopener noreferrer">${a.title}</a></h3>
-      <p>${a.description || "No summary available."}</p>
-      <div class="meta">
-        <span>${a.source.name || "Unknown Source"}</span> — 
-        <span>${new Date(a.publishedAt).toLocaleString()}</span>
-      </div>
-    `;
-    NEWS_LIST.appendChild(card);
+  if (!articles.length) {
+    newsFeed.innerHTML = `<p class="error">No global defence reports available right now.</p>`;
+    return;
   }
+
+  newsFeed.innerHTML = articles
+    .map(
+      (a) => `
+    <div class="news-item">
+      <div class="news-content">
+        <h3>${a.title}</h3>
+        <p>${a.description.replace(/<[^>]+>/g, "").slice(0, 150)}...</p>
+        <a href="${a.link}" target="_blank">Read More</a>
+      </div>
+    </div>`
+    )
+    .join("");
 }
 
-// ----- AUTO-UPDATE -----
-fetchDefenceNews();
-setInterval(fetchDefenceNews, 10 * 60 * 1000); // every 10 minutes
+loadDefenceNews();
+setInterval(loadDefenceNews, 10 * 60 * 1000); // auto refresh every 10 min
