@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>J.U.N.E.</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="shortcut icon" href="J.U.N.E.ico">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/ico" href="J.U.N.E.ico" />
 </head>
 <body>
   <header class="site-header">
-    <div class="header-left">
-      <img src="Assets/J.U.N.E.ico" alt="JUNE Logo" class="logo">
-      <h1>J.U.N.E.</h1>
-    </div>
+    <img src="Assets/J.U.N.E.ico" alt="JUNE Logo" class="logo" />
+    <h1>J.U.N.E.</h1>
     <nav>
       <a href="#home" id="link-home">Home</a>
       <a href="#news" id="link-news">News</a>
@@ -20,33 +18,39 @@
   </header>
 
   <main>
-    <!-- Home Section -->
-    <section id="home" class="page">
-      <h2>Agency Motto</h2>
-      <p class="motto">"For Order, Through Eternal Vigilance."</p>
-      <h3>Introduction</h3>
-      <p>
-        The <strong>J.U.N.E.</strong> is a covert global intelligence and defence agency dedicated to ensuring world stability. 
-        Through advanced research, field operations, and inter-agency coordination, J.U.N.E. monitors emerging threats to maintain balance and peace.
-      </p>
-      <p>
-        Established under the principles of unity, precision, and duty, J.U.N.E. remains at the forefront of intelligence strategy, defence innovation, and 
-        counter-espionage. Our mission: safeguard nations, preserve truth, and uphold order in a world of uncertainty.
-      </p>
+    <section id="home">
+      <h2>Motto</h2>
+      <p><em>“For Unity, Vigilance, and Global Security.”</em></p>
+      <p>J.U.N.E. is an elite multinational intelligence agency dedicated to maintaining peace, countering threats, and advancing strategic research worldwide.</p>
     </section>
 
-    <!-- News Section -->
-    <section id="news" class="page">
-      <h2>Global Defence News</h2>
-      <p class="subtitle">Live intelligence feed — world military and research developments</p>
-      <div id="news-list" class="news-container">
-        <!-- News articles will load here dynamically -->
+    <section id="news" style="display:none;">
+      <h2>World Intelligence Feed</h2>
+      <p>Select a country to view its latest national developments:</p>
+
+      <div class="country-selector">
+        <select id="country-select">
+          <option value="us">🇺🇸 United States</option>
+          <option value="in">🇮🇳 India</option>
+          <option value="gb">🇬🇧 United Kingdom</option>
+          <option value="ru">🇷🇺 Russia</option>
+          <option value="cn">🇨🇳 China</option>
+          <option value="de">🇩🇪 Germany</option>
+          <option value="fr">🇫🇷 France</option>
+          <option value="jp">🇯🇵 Japan</option>
+          <option value="ua">🇺🇦 Ukraine</option>
+          <option value="il">🇮🇱 Israel</option>
+          <option value="pk">🇵🇰 Pakistan</option>
+          <option value="ir">🇮🇷 Iran</option>
+        </select>
       </div>
+
+      <div id="news-list"></div>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 J.U.N.E. Public Information Office</p>
+    <p>© 2025 J.U.N.E. Global Information Division | All Rights Reserved</p>
   </footer>
 
   <script src="script.js"></script>
