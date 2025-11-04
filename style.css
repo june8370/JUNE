@@ -1,163 +1,97 @@
-/* ==================================================
-   J.U.N.E. Official Site — Government-Style Theme
-   ================================================== */
-
-:root {
-  --bg: #f4f6f8;
-  --primary: #0b2239;
-  --accent: #00aaff;
-  --text: #222;
-  --muted: #666;
-}
-
 body {
-  margin: 0;
   font-family: "Segoe UI", Arial, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  margin: 0;
+  background: #e8eef5;
+  color: #0b2239;
 }
 
-/* Header */
 .site-header {
-  background: var(--primary);
+  background: #0b2239;
   color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 25px;
+  padding: 10px 30px;
   border-bottom: 3px solid #123a5f;
 }
 
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
 .logo {
-  width: 70px;
   height: 75px;
+  width: 70px;
   object-fit: contain;
   border-radius: 8px;
+  margin-right: 15px;
 }
 
 .site-header h1 {
-  font-size: 1.2rem;
-  letter-spacing: 1px;
+  font-size: 1.3rem;
   font-weight: 700;
-  margin: 0;
+  flex-grow: 1;
 }
 
-nav a {
+.site-header nav a {
   color: #fff;
   text-decoration: none;
   margin: 0 10px;
   font-weight: 500;
-  transition: color 0.3s;
 }
 
-nav a:hover {
-  color: var(--accent);
+.site-header nav a:hover {
+  color: #00b7ff;
 }
 
-nav a[aria-current="true"] {
-  text-decoration: underline;
-  color: var(--accent);
-}
-
-/* Main layout */
 main {
-  padding: 30px;
-  max-width: 900px;
-  margin: auto;
+  padding: 20px 40px;
 }
 
 h2 {
-  color: var(--primary);
-  border-bottom: 2px solid var(--accent);
-  display: inline-block;
-  padding-bottom: 4px;
+  color: #0b2239;
 }
 
-.motto {
-  font-size: 1.2rem;
-  color: var(--muted);
-  font-style: italic;
-  margin-bottom: 20px;
+.country-selector {
+  margin: 10px 0 20px;
 }
 
-.subtitle {
-  color: var(--muted);
-  margin-bottom: 15px;
-}
-
-/* News Section */
-.news-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+select {
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
 
 .news-item {
-  background: #fff;
-  border-left: 4px solid var(--primary);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  padding: 15px 20px;
+  background: white;
+  padding: 15px;
   border-radius: 8px;
-}
-
-.news-item h3 {
-  margin: 0 0 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .news-item h3 a {
-  color: var(--primary);
+  color: #003366;
   text-decoration: none;
 }
 
 .news-item h3 a:hover {
-  color: var(--accent);
   text-decoration: underline;
 }
 
-.news-item p {
-  margin: 5px 0;
-  color: var(--text);
+.meta {
+  color: gray;
+  font-size: 0.85rem;
+  margin-top: 5px;
 }
 
-.meta {
-  font-size: 0.9rem;
-  color: var(--muted);
+footer {
+  background: #0b2239;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 30px;
 }
 
 .loading, .error {
-  text-align: center;
-  color: var(--muted);
+  color: #333;
   font-style: italic;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  background: var(--primary);
-  color: white;
-  padding: 12px;
-  font-size: 0.9rem;
-  margin-top: 40px;
-  border-top: 3px solid #123a5f;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .site-header {
-    flex-direction: column;
-    text-align: center;
-  }
-  .header-left {
-    flex-direction: column;
-  }
-  nav a {
-    display: inline-block;
-    margin: 5px;
-  }
+  padding: 15px;
 }
