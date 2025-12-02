@@ -23,15 +23,16 @@ header {
 }
 
 .logo {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   margin-bottom: 10px;
+  filter: drop-shadow(0 0 8px rgba(0, 170, 255, 0.3));
 }
 
 header h1 {
   font-size: 1.8em;
   color: #00aaff;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
 }
 
 .motto {
@@ -80,6 +81,35 @@ section.active {
   display: block;
   opacity: 1;
   visibility: visible;
+}
+
+/* Official Description Box */
+.official-description {
+  background: #0f1a24;
+  border-left: 4px solid #00aaff;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  color: #d4dce4;
+}
+
+/* Emblem */
+.emblem-box {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.emblem {
+  width: 200px;
+  height: auto;
+  filter: drop-shadow(0px 0px 6px rgba(0, 170, 255, 0.4));
+}
+
+.emblem-caption {
+  margin-top: 10px;
+  color: #a8b8c6;
+  font-size: 0.9em;
+  font-style: italic;
 }
 
 /* --- News Cards --- */
@@ -136,7 +166,7 @@ section.active {
   margin-top: 6px;
 }
 
-/* --- Fade Animation --- */
+/* Fade Animation */
 .fade-in {
   animation: fadeIn 0.6s ease;
 }
@@ -152,7 +182,7 @@ section.active {
   }
 }
 
-/* --- Footer --- */
+/* Footer */
 footer {
   text-align: center;
   padding: 15px;
