@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>J.U.N.E.</title>
+  <title>GDPD — Global Defence Press Directorate</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="Assets/ico" href="JUNE.ico" />
+
+  <!-- GDPD Seal as favicon -->
+  <link rel="icon" type="image/png" href="gdpd_seal.png" />
 </head>
+
 <body>
   <header>
-    <img src="Assets/JUNE.ico" alt="J.U.N.E. Logo" class="logo" />
-    <h1>J.U.N.E.</h1>
-    <p class="motto">For Unity, Through Intelligence, In Shadows We Serve</p>
+    <img src="gdpd_seal.png" alt="GDPD Official Seal" class="logo" />
+    <h1>Global Defence Press Directorate (GDPD)</h1>
+    <p class="motto"><em>“Reporting Beyond the Shadows.”</em></p>
+
     <nav>
       <button id="homeBtn" class="active">Home</button>
       <button id="newsBtn">News</button>
@@ -21,25 +25,42 @@
   <main>
     <!-- HOME SECTION -->
     <section id="homeSection" class="active">
-      <h2>About J.U.N.E.</h2>
-      <p>
-        The J.U.N.E. is an intelligence organisation committed to maintaining global order
-        through vigilance, research, and strategic operations.
+      <h2>About the GDPD</h2>
+
+      <p class="official-description">
+        <strong>🛡️ Official Description</strong><br><br>
+        The <strong>Global Defence Press Directorate (GDPD)</strong> is a specialized 
+        military-intelligence media authority responsible for analysing international 
+        conflicts, broadcasting strategic defence updates, and ensuring secure public 
+        communication during global security operations.
+        <br><br>
+        Operating under strict operational protocols, GDPD functions as a trusted source 
+        of verified defence intelligence, crisis assessments, strategic briefings, and 
+        high-priority military developments.
+        <br><br>
+        With a mandate to ensure accuracy, clarity, and security in defence communication, 
+        GDPD stands at the forefront of global military reporting — supporting strategic 
+        awareness, civilian safety, and international stability.
       </p>
-      <p><strong>Motto:</strong> <em>For Unity, Through Intelligence, In Shadows We Serve</em></p>
+
+      <div class="emblem-box">
+        <img src="gdpd_seal.png" class="emblem" alt="GDPD Seal">
+        <p class="emblem-caption">Official Seal — Global Defence Press Directorate</p>
+      </div>
     </section>
 
     <!-- NEWS SECTION -->
     <section id="newsSection" class="hidden">
-      <h2>Global Defence & Research News</h2>
+      <h2>Global Defence & Military Intelligence Reports</h2>
+
       <div id="newsFeed" class="news-grid">
-        <p class="loading">Gathering latest defence intelligence reports...</p>
+        <p class="loading">🛰 Fetching defence intelligence reports...</p>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 J.U.N.E. Global Information Desk</p>
+    <p>© 2025 Global Defence Press Directorate (GDPD)</p>
   </footer>
 
   <script src="script.js"></script>
