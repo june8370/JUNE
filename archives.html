@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GDPD — Defence Archives</title>
+  <link rel="stylesheet" href="archives.css" />
+</head>
+<body>
+  <header class="top-header">
+    <div class="header-left">
+      <img src="Assets/GDPD.png" alt="GDPD Logo" class="logo" />
+      <div>
+        <h1>Global Defence Press Directorate</h1>
+        <p class="motto">“Reporting Beyond the Shadows.”</p>
+      </div>
+    </div>
+
+    <nav class="nav-bar">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="index.html#newsSection" class="nav-link">News</a>
+      <span class="nav-spacer"></span>
+      <button id="unlockAllBtn" class="btn small">Unlock (session)</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="archive-intro">
+      <h2>Defence Archives — Secure Access</h2>
+      <p class="lead">
+        These records are categorized and access controlled. Locked items require a clearance password.
+        Unlocking happens in-browser for convenience; for production-grade security use server-side auth & encryption.
+      </p>
+    </section>
+
+    <section class="archive-controls">
+      <div class="control-row">
+        <label>
+          Search
+          <input id="searchInput" type="search" placeholder="Search title, summary, or tag…" />
+        </label>
+
+        <label>
+          Category
+          <select id="categoryFilter">
+            <option value="all">All</option>
+            <option value="military-technology">Military Technology</option>
+            <option value="global-conflicts">Global Conflicts</option>
+            <option value="special-operations">Special Operations</option>
+            <option value="intelligence-reports">Intelligence Reports</option>
+            <option value="classified-releases">Classified Releases</option>
+          </select>
+        </label>
+
+        <label>
+          Clearance
+          <select id="clearanceFilter">
+            <option value="all">All</option>
+            <option value="open">Open</option>
+            <option value="restricted">Restricted</option>
+            <option value="confidential">Confidential</option>
+            <option value="black">Black-Level</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section id="archiveList" class="archive-list">
+      <!-- JS populates archive cards here -->
+    </section>
+  </main>
+
+  <!-- Modal: Password prompt -->
+  <div id="pwModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="pwModalTitle">
+    <div class="modal-panel">
+      <h3 id="pwModalTitle">Enter Access Password</h3>
+      <p id="pwModalHint" class="muted">This file requires elevated clearance.</p>
+      <input id="pwInput" type="password" placeholder="Enter password" />
+      <div class="modal-actions">
+        <button id="pwCancel" class="btn">Cancel</button>
+        <button id="pwSubmit" class="btn primary">Unlock</button>
+      </div>
+      <p id="pwError" class="error hidden">Invalid password — try again.</p>
+    </div>
+  </div>
+
+  <!-- Modal: Viewer -->
+  <div id="viewerModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="viewerTitle">
+    <div class="modal-panel large">
+      <h3 id="viewerTitle">Archive File</h3>
+      <div id="viewerContent" class="viewer-content"></div>
+      <div class="modal-actions">
+        <button id="viewerClose" class="btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="archives.js"></script>
+</body>
+</html>
