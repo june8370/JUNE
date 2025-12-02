@@ -1,6 +1,6 @@
 // ======================================================
-// J.U.N.E. — Global Defence Feed (Enhanced UI Version)
-// Sections: Home + News (with fade transitions)
+// GDPD — Global Defence Feed System (Enhanced UI Version)
+// Sections: Home + News (fade transitions)
 // Uses rss2json.com (CORS-safe on GitHub Pages)
 // ======================================================
 
@@ -39,9 +39,9 @@ newsBtn.addEventListener("click", () => {
   loadDefenceNews();
 });
 
-// ======================================================
-// Defence News Feed Loader
-// ======================================================
+// ================================
+// Defence News Fetcher
+// ================================
 
 const RSS_FEEDS = [
   "https://feeds.bbci.co.uk/news/world/rss.xml",
@@ -72,7 +72,7 @@ async function fetchRSSFeed(feedUrl) {
 
 async function loadDefenceNews() {
   const container = document.getElementById("newsFeed");
-  container.innerHTML = `<p class="loading">🛰 Fetching defence intelligence...</p>`;
+  container.innerHTML = `<p class="loading">🛰 Fetching global defence intelligence...</p>`;
   let allItems = [];
 
   for (const feed of RSS_FEEDS) {
@@ -83,7 +83,7 @@ async function loadDefenceNews() {
   allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
 
   if (!allItems.length) {
-    container.innerHTML = `<p class="loading">No global defence reports available right now.</p>`;
+    container.innerHTML = `<p class="loading">No global defence reports available at the moment.</p>`;
     return;
   }
 
@@ -96,7 +96,7 @@ async function loadDefenceNews() {
       <div class="news-content">
         <h3>${news.title}</h3>
         <p>${news.description.replace(/<[^>]+>/g, "").slice(0, 150)}...</p>
-        <a href="${news.link}" target="_blank">Read More</a>
+        <a href="${news.link}" target="_blank">Read Full Report</a>
         <div class="meta">
           <small>${news.source} — ${new Date(news.pubDate).toLocaleString()}</small>
         </div>
